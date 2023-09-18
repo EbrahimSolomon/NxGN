@@ -117,18 +117,22 @@ filterMovies(): void {
   }
   
   onDeleteMovie(index: number) {
-      if (confirm("Are you sure you want to delete this movie?")) {
+    if (confirm("Are you sure you want to delete this movie?")) {
         const movieId = this.movies[index].movieId;
         this.http.delete(`${this.apiUrl}${movieId}`).subscribe(
-          () => {
-            this.movies.splice(index, 1);
-          },
-          error => {
-            console.error('Error deleting movie:', error);
-            alert('Failed to delete movie. Please try again later.');
-          }
+            () => {
+                // Remove from movies array
+                this.movies.splice(index, 1);
+
+                // Update filteredMovies array as well
+                this.filterMovies();
+            },
+            error => {
+                console.error('Error deleting movie:', error);
+                alert('Failed to delete movie. Please try again later.');
+            }
         );
-      }
-  }
+    }
+}
 }
  
