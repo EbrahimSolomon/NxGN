@@ -23,9 +23,6 @@ export class MoviesComponent implements OnInit {
   // private TMDB_API_ENDPOINT = 'https://api.themoviedb.org/3/search/movie?api_key=IneedAnAccount&query=';
   private OMDB_API_ENDPOINT = 'http://www.omdbapi.com/?apikey=dc8cb17&t=';
 
-
-
-
   ngOnInit(): void {
     this.fetchMovies();
   }
@@ -50,7 +47,6 @@ export class MoviesComponent implements OnInit {
     );
 }
 
-  
   fetchMovies(): void {
     this.http.get<any>(this.apiUrl).subscribe(
         response => {

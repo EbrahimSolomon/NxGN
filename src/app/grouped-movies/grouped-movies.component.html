@@ -1,4 +1,7 @@
-<button class="btn btn-primary" (click)="downloadCSV()">Download CSV</button>
+<button class="btn btn-download" (click)="downloadCSV()">
+    <i class="fas fa-file-csv"></i> Download CSV
+</button>
+
 
 <!-- Movies Grouped by Ratings -->
 <div *ngFor="let rating of getObjectKeys(groupedMovies)">

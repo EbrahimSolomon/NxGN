@@ -1,23 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">My Movies</a>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
-  <!-- Navbar Toggler for Smaller Devices -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto"> <!-- aligns the nav items to the right -->
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/grouped-movies" routerLinkActive="active">View Movies Grouped By Ratings</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/movie-category-report" class="nav-link">Movie Category Report</a>
-      </li>
-    </ul>
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">My Movies</a>
+    
+    <!-- Navbar Toggler for Smaller Devices -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/grouped-movies" routerLinkActive="active"><i class="fas fa-star"></i> View Movies Grouped By Ratings</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/movie-category-report" class="nav-link"><i class="fas fa-chart-pie"></i> Movie Category Report</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="content-wrapper">
+    <router-outlet></router-outlet>
   </div>
-</nav>
-
-<div class="content-wrapper">
-  <router-outlet></router-outlet>
-</div>
+  

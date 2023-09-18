@@ -10,4 +10,23 @@
     &:hover {
         background-color: #0056b3;
     }
+
+    .btn-download {
+        background-color: #2a2a2a; /* Solid color matching the navbar's start gradient color */
+        color: #b8b8b8; /* Setting the text color to match other navbar text */
+        border: grey;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .btn-download:hover, 
+    .btn-download:focus {
+        background-color: #484848;
+        color: #fff; 
+    }
+    
+    .btn-download i {
+        margin-right: 0.5rem;
+    }
+    
 }
