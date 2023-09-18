@@ -1,0 +1,21 @@
+<p>edit-movie works!</p>
+<div class="container">
+    <h2>Edit Movie</h2>
+    <form *ngIf="movie" (ngSubmit)="onSave()">
+      <div class="form-group">
+        <label for="movieName">Movie Name:</label>
+        <input type="text" class="form-control" id="movieName" [(ngModel)]="movie.movieName" name="movieName" required>
+      </div>
+      <div class="form-group">
+        <label for="movieCategory">Movie Category:</label>
+        <input type="text" class="form-control" id="movieCategory" [(ngModel)]="movie.movieCategory" name="movieCategory" required>
+      </div>
+      <div class="form-group">
+        <label for="movieRating">Movie Rating:</label>
+        <input type="number" class="form-control" id="movieRating" [(ngModel)]="movie.movieRating" name="movieRating" required>
+      </div>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+  

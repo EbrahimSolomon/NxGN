@@ -1,0 +1,73 @@
+<section class="d-flex justify-content-center align-items-center">
+    <div class="container text-center">
+        <header>
+            <h1>Movies</h1>
+        </header>
+
+        <!-- Search and Filter Section -->
+        <div class="filter-section mb-4">
+            <label>
+                Search Movies:
+                <input type="text" [(ngModel)]="searchText" class="form-control mr-2 d-inline-block" placeholder="Search movies..." (keyup)="onSearchChange()" />
+            </label>
+
+            <!-- Dropdown for search type -->
+            <label>
+                Search By:
+                <select [(ngModel)]="searchType" class="form-control mr-2 d-inline-block">
+                    <option value="name">Name</option>
+                    <option value="category">Category</option>
+                    <!-- Add more options here as needed -->
+                </select>
+            </label>
+            
+            <button class="btn btn-secondary" (click)="filterMovies()">Filter</button>
+        </div>
+
+        <!-- Total Filtered Movies Count -->
+        <h2>Total Filtered Movies: {{ filteredMovies.length }}</h2>
+
+        <!-- Add Movie Button -->
+        <button class="btn btn-primary mb-4" (click)="onAddMovie()">Add Movie</button>
+
+        <!-- Movies Grid -->
+        <div class="row justify-content-center">
+            <article class="col-md-4" *ngFor="let movie of filteredMovies; let i = index">
+                <div class="card mb-4">
+                    <figure *ngIf="movie.movieImageUrl; else noImage">
+                        <img class="card-img-top" src="{{ movie.movieImageUrl }}" alt="{{ movie.movieName }} Image">
+                    </figure>
+                    <ng-template #noImage>
+                        <div class="card-img-placeholder">
+                            No Image Available
+                        </div>
+                    </ng-template>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ movie.movieName }}</h3>
+                        <p class="card-subtitle mb-2 text-muted">{{ movie.movieCategory }}</p>
+                        
+                        <!-- Rating stars -->
+                        <div class="rating">
+                            <!-- Full Stars -->
+                            <ng-container *ngFor="let r of [].constructor(getFloor(movie.movieRating)); let i = index">
+                                <span class="star">★</span>
+                            </ng-container>
+                            <!-- Half Star (if rating is not a whole number) -->
+                            <span class="star" *ngIf="movie.movieRating % 1 !== 0">☆</span>
+                            <!-- Empty Stars -->
+                            <ng-container *ngFor="let r of [].constructor(5 - getCeil(movie.movieRating)); let i = index">
+                                <span class="star empty-star">☆</span>
+                            </ng-container>
+                        </div>
+                        
+                        <p class="card-text">Rating: {{ movie.movieRating }}</p>
+
+                        <!-- Edit and Delete Buttons -->
+                        <button class="btn btn-warning mr-2" (click)="onEditMovie(i)">Edit</button>
+                        <button class="btn btn-danger" (click)="onDeleteMovie(i)">Delete</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,27 @@
+<p>add-movie works!</p>
+<div class="container">
+    <h2>Add Movie</h2>
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+        
+        <div class="form-group">
+            <label for="movieName">Movie Name:</label>
+            <input type="text" class="form-control" id="movieName" [(ngModel)]="movie.movieName" name="movieName" required #nameCtrl="ngModel">
+            <div *ngIf="nameCtrl.touched && nameCtrl.invalid" class="alert alert-danger">Movie Name is required!</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="movieCategory">Movie Category:</label>
+            <input type="text" class="form-control" id="movieCategory" [(ngModel)]="movie.movieCategory" name="movieCategory" required #categoryCtrl="ngModel">
+            <div *ngIf="categoryCtrl.touched && categoryCtrl.invalid" class="alert alert-danger">Movie Category is required!</div>
+        </div>
+
+        <div class="form-group">
+            <label for="movieRating">Movie Rating (0 to 5):</label>
+            <input type="number" class="form-control" id="movieRating" [(ngModel)]="movie.movieRating" name="movieRating" required min="0" max="5" #ratingCtrl="ngModel">
+            <div *ngIf="ratingCtrl.touched && (ratingCtrl.value < 0 || ratingCtrl.value > 5)" class="alert alert-danger">Rating must be between 0 and 5!</div>
+        </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </form>
+</div>

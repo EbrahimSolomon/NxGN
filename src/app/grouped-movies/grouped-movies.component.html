@@ -1,0 +1,64 @@
+<button class="btn btn-primary" (click)="downloadCSV()">Download CSV</button>
+
+<!-- Movies Grouped by Ratings -->
+<div *ngFor="let rating of getObjectKeys(groupedMovies)">
+    <h3 (click)="showMoviesForRating(rating)" data-toggle="modal" data-target="#moviesModal" style="cursor: pointer;">
+        Rating: {{ rating }}
+    </h3>
+    <div class="row justify-content-center">
+        <div class="col-md-4" *ngFor="let movie of groupedMovies[rating]">
+            <div class="card mb-4">
+                <img class="card-img-top" src="{{ movie.movieImageUrl }}" alt="{{ movie.movieName }} Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ movie.movieName }}</h5>
+                    <p class="card-subtitle mb-2 text-muted">{{ movie.movieCategory }}</p>
+                    <!-- Rating stars -->
+                    <div class="rating">
+                        <!-- Full Stars -->
+                        <ng-container *ngFor="let r of [].constructor(getFloor(movie.movieRating)); let i = index">
+                            <span class="star">★</span>
+                        </ng-container>
+                        <!-- Half Star (if rating is not a whole number) -->
+                        <span class="star" *ngIf="movie.movieRating % 1 !== 0">☆</span>
+                        <!-- Empty Stars -->
+                        <ng-container *ngFor="let r of [].constructor(5 - getCeil(movie.movieRating)); let i = index">
+                            <span class="star empty-star">☆</span>
+                        </ng-container>
+                    </div>
+                    <p class="card-text">{{ movie.movieRating }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Movies based on Rating (moved outside the loop) -->
+<div class="modal fade" id="moviesModal" tabindex="-1" aria-labelledby="moviesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moviesModalLabel">Movies with {{ selectedRating }} Rating</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-4" *ngFor="let movie of moviesForSelectedRating">
+                        <div class="card mb-4">
+                            <img class="card-img-top" src="{{ movie.movieImageUrl }}" alt="{{ movie.movieName }} Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ movie.movieName }}</h5>
+                                <p class="card-subtitle mb-2 text-muted">{{ movie.movieCategory }}</p>
+                                <!-- Rating stars and other details can be replicated here if needed -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+body {
+    background-image: url('/assets/images/movie.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+
